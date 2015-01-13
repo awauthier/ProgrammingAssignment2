@@ -1,11 +1,12 @@
 ## The following functions are used to inverse of a Matrix and cache the result
 ## Example of use:
-## > mat <- matrix(1:4,2,2)
+## > set.seed(1)
+## > mat <- matrix(rnorm(9,0,10),3,3)
 ## > cm <- makeCacheMatrix(mat)
 ## > inv <- cacheSolve(cm)
 
 ## The result of the following equation should be an identity matrix
-## > mat %*% inv
+## > round(inv %*% mat, digits=5)
 
 ## A second call to the cacheSolve method should display "getting cached data" as follow
 ## > inv <- cacheSolve(cm)
@@ -32,6 +33,10 @@ makeCacheMatrix <- function(x = matrix()) {
 	
 	## Returns the inverted matrix
 	getinv <- function() inv
+	
+	list(set = set, get = get,
+		 setinv = setinv,
+		 getinv = getinv)
 }
 
 ## Inverse a Matrix and cache it
